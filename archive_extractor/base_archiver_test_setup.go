@@ -11,6 +11,7 @@ type ArchiveData struct {
 	Name          string
 	ModTime       int64
 	Size          int64
+	IsSparse      bool
 }
 
 func params() map[string]interface{} {
@@ -33,5 +34,6 @@ func processingFunc(header *ArchiveHeader, params map[string]interface{}) error 
 	archiveData.Size = header.Size
 	archiveData.IsFolder = header.IsFolder
 	archiveData.ArchiveReader = header.ArchiveReader
+	archiveData.IsSparse = header.IsSparse
 	return nil
 }

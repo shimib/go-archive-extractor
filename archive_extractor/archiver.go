@@ -15,8 +15,9 @@ type ArchiveHeader struct {
 	Name          string
 	ModTime       int64
 	Size          int64
+	IsSparse      bool
 }
 
-func NewArchiveHeader(archiveReader io.Reader, name string, modTime int64, size int64) *ArchiveHeader {
-	return &ArchiveHeader{ArchiveReader: archiveReader, IsFolder: utils.IsFolder(name), Name: name, ModTime: modTime, Size: size}
+func NewArchiveHeader(archiveReader io.Reader, name string, modTime int64, size int64, isSparse bool) *ArchiveHeader {
+	return &ArchiveHeader{ArchiveReader: archiveReader, IsFolder: utils.IsFolder(name), Name: name, ModTime: modTime, Size: size, IsSparse: isSparse}
 }

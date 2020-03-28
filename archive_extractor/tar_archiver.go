@@ -37,7 +37,11 @@ func (za TarArchvier) ExtractArchive(path string, processingFunc func(header *Ar
 			return err
 		}
 		if !archiveEntry.FileInfo().IsDir() && !utils.PlaceHolderFolder(archiveEntry.FileInfo().Name()) {
-			archiveHeader := NewArchiveHeader(rc, archiveEntry.Name, archiveEntry.ModTime.Unix(), archiveEntry.FileInfo().Size())
+			isSparse := false
+            if archiveEntry.Typeflag == tar.TypeGNUSparse {
+            	isSparse = true
+			}
+			archiveHeader := NewArchiveHeader(rc, archiveEntry.Name, archiveEntry.ModTime.Unix(), archiveEntry.FileInfo().Size(), isSparse)
 			err = processingFunc(archiveHeader, params)
 			if err != nil {
 				return err

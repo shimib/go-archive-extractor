@@ -57,7 +57,7 @@ func (za RpmArchvier) ExtractArchive(path string, processingFunc func(header *Ar
 		}
 		if archiveEntry.Mode != cpio.TYPE_DIR {
 			if archiveEntry != nil {
-				archiveHeader := NewArchiveHeader(rc, archiveEntry.Name, archiveEntry.Mtime, archiveEntry.Size)
+				archiveHeader := NewArchiveHeader(rc, archiveEntry.Name, archiveEntry.Mtime, archiveEntry.Size, false)
 				err = processingFunc(archiveHeader, params)
 				if _, ok := params["rpmPkg"]; !ok {
                                          params["rpmPkg"] = &RpmPkg{Name: rpm.Name(), Version: rpm.Version(), Release: rpm.Release(), Epoch: rpm.Epoch(), Licenses: []string{rpm.License()}}				}

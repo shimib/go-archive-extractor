@@ -26,7 +26,7 @@ func (za ZipArchvier) ExtractArchive(path string, processingFunc func(header *Ar
 			multiArchiveErr = archiver_errors.Append(multiArchiveErr, fmt.Errorf("failed to open %s: %v", path, err))
 			continue
 		}
-		archiveHeader := NewArchiveHeader(rc, archiveEntry.Name, archiveEntry.ModTime().Unix(), archiveEntry.FileInfo().Size())
+		archiveHeader := NewArchiveHeader(rc, archiveEntry.Name, archiveEntry.ModTime().Unix(), archiveEntry.FileInfo().Size(), false)
 		err = processingFunc(archiveHeader, params)
 		if err != nil {
 			if rc != nil {

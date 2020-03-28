@@ -30,7 +30,7 @@ func (za SevenZipArchvier) ExtractArchive(path string, processingFunc func(heade
 			}
 			if !utils.IsFolder(archiveEntry) {
 				rc := &SevenZipReader{Archive: r, Size: r.Size()}
-				archiveHeader := NewArchiveHeader(rc, r.Name(), r.ModTime().Unix(), int64(r.Size()))
+				archiveHeader := NewArchiveHeader(rc, r.Name(), r.ModTime().Unix(), int64(r.Size()), false)
 				err = processingFunc(archiveHeader, params)
 				if err != nil {
 					return err

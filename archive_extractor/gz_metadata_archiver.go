@@ -21,7 +21,7 @@ func (ga GzMetadataArchiver) ExtractArchive(path string, processingFunc func(hea
 	if err != nil {
 		return archiver_errors.New(err)
 	}
-	archiveHeader := NewArchiveHeader(rc, "metadata", time.Now().Unix(), 0)
+	archiveHeader := NewArchiveHeader(rc, "metadata", time.Now().Unix(), 0, false)
 	err = processingFunc(archiveHeader, params)
 	if err != nil {
 		return err

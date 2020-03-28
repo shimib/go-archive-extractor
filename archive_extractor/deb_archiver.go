@@ -36,7 +36,7 @@ func (za DebArchvier) ExtractArchive(path string, processingFunc func(header *Ar
 			return errors.New(fmt.Sprintf("Failed to open file : %s", path))
 		}
 		if !utils.IsFolder(archiveEntry.Name) {
-			archiveHeader := NewArchiveHeader(rc, archiveEntry.Name, archiveEntry.ModTime.Unix(), archiveEntry.Size)
+			archiveHeader := NewArchiveHeader(rc, archiveEntry.Name, archiveEntry.ModTime.Unix(), archiveEntry.Size, false)
 			err = processingFunc(archiveHeader, params)
 			if err != nil {
 				return err
